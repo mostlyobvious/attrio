@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "attrio/default_value/base"
-
 module Attrio
   module DefaultValue
     class Symbol < Base

@@ -1,17 +1,29 @@
 # frozen_string_literal: true
 
-require "attrio/version"
-
-require "attrio/core_ext/object"
-require "attrio/core_ext/string"
+require_relative "attrio/core_ext/object"
+require_relative "attrio/core_ext/string"
+require_relative "attrio/attributes_parser"
+require_relative "attrio/initialize"
+require_relative "attrio/inspect"
+require_relative "attrio/reset"
+require_relative "attrio/helpers"
+require_relative "attrio/attribute"
+require_relative "attrio/default_value"
+require_relative "attrio/builders/accessor_builder"
+require_relative "attrio/builders/reader_builder"
+require_relative "attrio/builders/writer_builder"
+require_relative "attrio/types/base"
+require_relative "attrio/types/array"
+require_relative "attrio/types/boolean"
+require_relative "attrio/types/date"
+require_relative "attrio/types/date_time"
+require_relative "attrio/types/float"
+require_relative "attrio/types/integer"
+require_relative "attrio/types/set"
+require_relative "attrio/types/symbol"
+require_relative "attrio/types/time"
 
 module Attrio
-  autoload :AttributesParser, "attrio/attributes_parser"
-  autoload :Initialize, "attrio/initialize"
-  autoload :Inspect, "attrio/inspect"
-  autoload :Reset, "attrio/reset"
-  autoload :Helpers, "attrio/helpers"
-
   def self.included(base)
     base.send :include, Attrio::Reset
     base.send :include, Attrio::Inspect
@@ -65,26 +77,5 @@ module Attrio
     def const_missing(name)
       Attrio::AttributesParser.cast_type(name) || super
     end
-  end
-
-  autoload :Attribute, "attrio/attribute"
-  autoload :DefaultValue, "attrio/default_value"
-
-  module Builders
-    autoload :ReaderBuilder, "attrio/builders/reader_builder"
-    autoload :WriterBuilder, "attrio/builders/writer_builder"
-  end
-
-  module Types
-    autoload :Array, "attrio/types/array"
-    autoload :Base, "attrio/types/base"
-    autoload :Boolean, "attrio/types/boolean"
-    autoload :Date, "attrio/types/date"
-    autoload :DateTime, "attrio/types/date_time"
-    autoload :Float, "attrio/types/float"
-    autoload :Integer, "attrio/types/integer"
-    autoload :Set, "attrio/types/set"
-    autoload :Symbol, "attrio/types/symbol"
-    autoload :Time, "attrio/types/time"
   end
 end

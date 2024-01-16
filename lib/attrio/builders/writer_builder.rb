@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "attrio/builders/accessor_builder"
-
 module Attrio
   module Builders
     class WriterBuilder < AccessorBuilder
