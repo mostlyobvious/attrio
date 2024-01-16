@@ -5,6 +5,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rspec'
-gem 'webmock', '~> 1.9.0'
+gem 'webmock'
 gem 'json'
 gem 'rake'
