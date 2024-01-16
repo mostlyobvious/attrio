@@ -7,8 +7,6 @@ require 'attrio'
 require 'rspec'
 require 'webmock/rspec'
 require 'json'
-require 'coveralls'
-Coveralls.wear!
 
 Class.class_eval do
   def const_missing(name)
