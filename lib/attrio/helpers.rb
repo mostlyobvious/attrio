@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Attrio
   module Helpers
     extend self
