@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-describe 'Attributes inheritance' do
+describe "Attributes inheritance" do
   before(:all) do
     class Parent
       include Attrio
@@ -10,7 +10,7 @@ describe 'Attributes inheritance' do
       define_attributes do
         attr :email, String
         attr :name, String
-        attr :created_at, DateTime, :default => proc{ Time.now }
+        attr :created_at, DateTime, default: proc { Time.now }
       end
     end
 
@@ -18,19 +18,15 @@ describe 'Attributes inheritance' do
     end
 
     class ChildWithNewAttributes < Parent
-      define_attributes do
-        attr :age, Integer
-      end
+      define_attributes { attr :age, Integer }
     end
 
     class ChildWithOverridenAttributes < Parent
-      define_attributes do
-        attr :name, Symbol
-      end
+      define_attributes { attr :name, Symbol }
     end
   end
 
-  context 'Classes should inherit attributes' do
+  context "Classes should inherit attributes" do
     context "without attributes" do
       subject { ChildWithoutAttributes.attributes }
 

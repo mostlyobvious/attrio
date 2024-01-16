@@ -1,37 +1,33 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Attrio::Types::Symbol do
-  context 'standard casting conventions' do
+  context "standard casting conventions" do
     let(:model) do
       Class.new do
         include Attrio
 
-        define_attributes do
-          attr :symbol_attribute, Symbol
-        end
+        define_attributes { attr :symbol_attribute, Symbol }
       end
     end
 
-    let(:object){ model.new }
+    let(:object) { model.new }
 
-    context 'with not typecasted assignment' do
-      it 'should cast <String>' do
+    context "with not typecasted assignment" do
+      it "should cast <String>" do
         object.symbol_attribute = "CamelCase"
         expect(object.symbol_attribute).to eq(:CamelCase)
       end
 
-      it 'should not cast an object which has not method to_sym' do
-        expect {
-          object.symbol_attribute = []
-        }.not_to raise_exception
+      it "should not cast an object which has not method to_sym" do
+        expect { object.symbol_attribute = [] }.not_to raise_exception
         expect(object.symbol_attribute).to be_nil
       end
     end
 
-    context 'with typecasted assignment' do
-      it 'should assign <Symbol>' do
+    context "with typecasted assignment" do
+      it "should assign <Symbol>" do
         symbol = :symbol
 
         object.symbol_attribute = symbol
@@ -41,35 +37,31 @@ describe Attrio::Types::Symbol do
     end
   end
 
-  context ':underscore option passed' do
+  context ":underscore option passed" do
     let(:model) do
       Class.new do
         include Attrio
 
-        define_attributes do
-          attr :symbol_attribute, Symbol, :underscore => true
-        end
+        define_attributes { attr :symbol_attribute, Symbol, underscore: true }
       end
     end
 
-    let(:object){ model.new }
+    let(:object) { model.new }
 
-    context 'with not typecasted assignment' do
-      it 'should cast <String>' do
+    context "with not typecasted assignment" do
+      it "should cast <String>" do
         object.symbol_attribute = "CamelCase"
         expect(object.symbol_attribute).to eq(:camel_case)
       end
 
-      it 'should not cast an object which has not method to_sym' do
-        expect {
-          object.symbol_attribute = []
-        }.not_to raise_exception
+      it "should not cast an object which has not method to_sym" do
+        expect { object.symbol_attribute = [] }.not_to raise_exception
         expect(object.symbol_attribute).to be_nil
       end
     end
 
-    context 'with typecasted assignment' do
-      it 'should assign <Symbol>' do
+    context "with typecasted assignment" do
+      it "should assign <Symbol>" do
         symbol = :symbol
 
         object.symbol_attribute = symbol

@@ -6,13 +6,18 @@ module Attrio
   module Types
     class Boolean < Base
       def self.typecast(value, options = {})
-        true_values = options[:true] || options[:true_values] || ['yes', '1', 1, 'true']
+        true_values =
+          options[:true] || options[:true_values] || ["yes", "1", 1, "true"]
         false_values = options[:false] || options[:false_values]
 
         if false_values.present?
-          return Helpers.to_a(false_values).flatten.include?(value) ? false : true
+          return(
+            Helpers.to_a(false_values).flatten.include?(value) ? false : true
+          )
         else
-          return Helpers.to_a(true_values).flatten.include?(value) ? true : false
+          return(
+            Helpers.to_a(true_values).flatten.include?(value) ? true : false
+          )
         end
       end
 

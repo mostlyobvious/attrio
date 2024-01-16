@@ -11,7 +11,10 @@ module Attrio
     module ClassMethods
       def define_attrio_reset(as)
         define_method "reset_#{as.to_s}" do |attributes = []|
-          self.send(as.to_s, attributes).values.each{ |attribute| attribute.reset! }
+          self
+            .send(as.to_s, attributes)
+            .values
+            .each { |attribute| attribute.reset! }
         end
       end
     end

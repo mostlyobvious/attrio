@@ -9,14 +9,16 @@ module Attrio
 
       self.class.attrio.each do |group, options|
         unless options[:inspect] == false
-          inspection << self.send(group).map { |key, attribute|
-            self.inspect_attribute(key, attribute.instance_variable_name)
-          }
+          inspection << self
+            .send(group)
+            .map do |key, attribute|
+              self.inspect_attribute(key, attribute.instance_variable_name)
+            end
         end
       end
 
       unless inspection.size == 0
-        "#<#{self.class} #{inspection.flatten.compact.join(', ')}>"
+        "#<#{self.class} #{inspection.flatten.compact.join(", ")}>"
       else
         super
       end

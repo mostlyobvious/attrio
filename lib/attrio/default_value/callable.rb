@@ -2,7 +2,7 @@
 
 # encoding: utf-8
 
-require 'attrio/default_value/base'
+require "attrio/default_value/base"
 
 module Attrio
   module DefaultValue

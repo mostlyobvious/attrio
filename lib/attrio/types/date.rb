@@ -7,7 +7,11 @@ module Attrio
     class Date < Base
       def self.typecast(value, options = {})
         begin
-          options[:format].present? ? ::Date.strptime(value.to_s, options[:format]) : ::Date.parse(value.to_s)
+          if options[:format].present?
+            ::Date.strptime(value.to_s, options[:format])
+          else
+            ::Date.parse(value.to_s)
+          end
         rescue ArgumentError => e
           nil
         end

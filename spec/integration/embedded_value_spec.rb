@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-describe 'Embedded Value' do
+describe "Embedded Value" do
   before do
     module MassAssignment
       def initialize(attributes = {})
@@ -10,7 +10,7 @@ describe 'Embedded Value' do
       end
 
       def attributes=(attributes = {})
-        attributes.each do |attr,value|
+        attributes.each do |attr, value|
           self.send("#{attr}=", value) if self.respond_to?("#{attr}=")
         end
       end
@@ -20,9 +20,7 @@ describe 'Embedded Value' do
       include Attrio
       include MassAssignment
 
-      define_attributes do
-        attr :name, String
-      end
+      define_attributes { attr :name, String }
     end
 
     class Address
@@ -30,9 +28,9 @@ describe 'Embedded Value' do
       include MassAssignment
 
       define_attributes do
-        attr :street,  String
+        attr :street, String
         attr :zipcode, String
-        attr :city,    City
+        attr :city, City
       end
     end
 
@@ -41,21 +39,21 @@ describe 'Embedded Value' do
       include MassAssignment
 
       define_attributes do
-        attr :name,    String
+        attr :name, String
         attr :address, Address
       end
     end
   end
 
   let(:address_attributes) do
-      { :street => 'Sklizkova 6A', :zipcode => '170000', :city => { :name => 'Tver' } }
+    { street: "Sklizkova 6A", zipcode: "170000", city: { name: "Tver" } }
   end
 
-  it 'should allow to pass a hash for the embedded value' do
+  it "should allow to pass a hash for the embedded value" do
     user = User.new
     user.address = address_attributes
-    expect(user.address.street).to eq('Sklizkova 6A')
-    expect(user.address.zipcode).to eq('170000')
-    expect(user.address.city.name).to eq('Tver')
+    expect(user.address.street).to eq("Sklizkova 6A")
+    expect(user.address.zipcode).to eq("170000")
+    expect(user.address.city.name).to eq("Tver")
   end
 end

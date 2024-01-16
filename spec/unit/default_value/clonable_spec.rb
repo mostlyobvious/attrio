@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Attrio::DefaultValue::Clonable do
   subject { described_class.new(attribute, default_value) }
@@ -9,27 +9,25 @@ describe Attrio::DefaultValue::Clonable do
     Class.new do
       include Attrio
 
-      define_attributes do
-        attr :attribute, Date, :default => Date.today
-      end
+      define_attributes { attr :attribute, Date, default: Date.today }
     end
   end
 
-  let(:object){ model.new }
+  let(:object) { model.new }
 
-  let(:attribute){ double('attribute')}
-  let(:default_value){ double('default_value')}
-  let(:instance)  { double('instance') }
-  let(:clone)     { double('clone') }
+  let(:attribute) { double("attribute") }
+  let(:default_value) { double("default_value") }
+  let(:instance) { double("instance") }
+  let(:clone) { double("clone") }
 
-  before { allow(default_value).to receive_messages(:clone => clone) }
+  before { allow(default_value).to receive_messages(clone: clone) }
 
-  it 'should clone the value' do
+  it "should clone the value" do
     expect(default_value).to receive(:clone).with(no_args)
     subject.call(instance)
   end
 
-  it 'should be an instance of a cloned value' do
+  it "should be an instance of a cloned value" do
     expect(subject.call(instance)).to be(clone)
   end
 

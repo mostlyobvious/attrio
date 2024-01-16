@@ -3,11 +3,15 @@
 # encoding: utf-8
 
 class Object
-  def blank?
-    !self
-  end unless method_defined? :blank?
+  unless method_defined? :blank?
+    def blank?
+      !self
+    end
+  end
 
-  def present?
-    !blank?
-  end unless method_defined? :present?
+  unless method_defined? :present?
+    def present?
+      !blank?
+    end
+  end
 end

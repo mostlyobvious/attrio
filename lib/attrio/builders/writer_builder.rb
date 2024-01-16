@@ -2,7 +2,7 @@
 
 # encoding: utf-8
 
-require 'attrio/builders/accessor_builder'
+require "attrio/builders/accessor_builder"
 
 module Attrio
   module Builders
@@ -26,17 +26,21 @@ module Attrio
       def self.define_typecasting_method(klass, type, options)
         klass.send :define_method, options[:method_name] do |value|
           if !value.nil?
-            value = if type.respond_to?(:typecast) && type.respond_to?(:typecasted?)
-              type.typecasted?(value, options) ? value : type.typecast(*[value, options])
-            else
-              type == Hash && value.is_a?(Hash) ? value : type.new(value)
-            end
+            value =
+              if type.respond_to?(:typecast) && type.respond_to?(:typecasted?)
+                if type.typecasted?(value, options)
+                  value
+                else
+                  type.typecast(*[value, options])
+                end
+              else
+                type == Hash && value.is_a?(Hash) ? value : type.new(value)
+              end
           end
 
           self.instance_variable_set(options[:instance_variable_name], value)
         end
       end
     end
-
   end
 end

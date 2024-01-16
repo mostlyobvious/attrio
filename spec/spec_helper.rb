@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rspec'
-require 'webmock/rspec'
-require 'json'
+require "rspec"
+require "webmock/rspec"
+require "json"
 
 require_relative "../lib/attrio"
 

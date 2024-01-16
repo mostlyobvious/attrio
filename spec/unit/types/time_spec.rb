@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Attrio::Types::Time do
-  context 'standard casting conventions' do
+  context "standard casting conventions" do
     let(:model) do
       Class.new do
         include Attrio
 
-        define_attributes do
-          attr :time_attribute, Time
-        end
+        define_attributes { attr :time_attribute, Time }
       end
     end
 
-    let(:object){ model.new }
+    let(:object) { model.new }
 
-    context 'with not typecasted assignment' do
-      it 'should cast <String>' do
+    context "with not typecasted assignment" do
+      it "should cast <String>" do
         now = Time.at(Time.now.to_i)
 
         object.time_attribute = now.to_s
@@ -26,8 +24,8 @@ describe Attrio::Types::Time do
       end
     end
 
-    context 'with typecasted assignment' do
-      it 'should assign <Time>' do
+    context "with typecasted assignment" do
+      it "should assign <Time>" do
         now = Time.now
 
         object.time_attribute = now
@@ -37,40 +35,40 @@ describe Attrio::Types::Time do
     end
   end
 
-  context ':format option passed' do
+  context ":format option passed" do
     let(:model) do
       Class.new do
         include Attrio
 
         define_attributes do
-          attr :time_attribute, Time, :format => '%m/%d/%y-%H:%M:%S'
+          attr :time_attribute, Time, format: "%m/%d/%y-%H:%M:%S"
         end
       end
     end
 
-    let(:object){ model.new }
+    let(:object) { model.new }
 
-    context 'with not typecasted assignment' do
-      it 'should cast <String> of appropriate format' do
+    context "with not typecasted assignment" do
+      it "should cast <String> of appropriate format" do
         now = Time.at(Time.now.to_i)
 
-        object.time_attribute = now.strftime('%m/%d/%y-%H:%M:%S')
+        object.time_attribute = now.strftime("%m/%d/%y-%H:%M:%S")
         expect(object.time_attribute).to be_instance_of(Time)
         expect(object.time_attribute).to eq(now)
       end
 
-      it 'should not cast <String> with invalid format' do
+      it "should not cast <String> with invalid format" do
         now = Time.now
 
         expect {
-          object.time_attribute = now.strftime('%H:%M:%S-%m/%d/%y')
+          object.time_attribute = now.strftime("%H:%M:%S-%m/%d/%y")
         }.not_to raise_exception
         expect(object.time_attribute).to be_nil
       end
     end
 
-    context 'with typecasted assignment' do
-      it 'should assign <Time>' do
+    context "with typecasted assignment" do
+      it "should assign <Time>" do
         now = Time.now
 
         object.time_attribute = now

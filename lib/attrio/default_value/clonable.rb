@@ -2,12 +2,18 @@
 
 # encoding: utf-8
 
-require 'attrio/default_value/base'
+require "attrio/default_value/base"
 
 module Attrio
   module DefaultValue
     class Clonable < Base
-      SINGLETON_CLASSES = [::NilClass, ::TrueClass, ::FalseClass, ::Numeric,  ::Symbol ].freeze
+      SINGLETON_CLASSES = [
+        ::NilClass,
+        ::TrueClass,
+        ::FalseClass,
+        ::Numeric,
+        ::Symbol
+      ].freeze
 
       def self.handle?(value)
         case value

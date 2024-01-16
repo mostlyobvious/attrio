@@ -2,17 +2,17 @@
 
 # encoding: utf-8
 
-require 'attrio/version'
+require "attrio/version"
 
-require 'attrio/core_ext/object'
-require 'attrio/core_ext/string'
+require "attrio/core_ext/object"
+require "attrio/core_ext/string"
 
 module Attrio
-  autoload :AttributesParser, 'attrio/attributes_parser'
-  autoload :Initialize, 'attrio/initialize'
-  autoload :Inspect, 'attrio/inspect'
-  autoload :Reset, 'attrio/reset'
-  autoload :Helpers, 'attrio/helpers'
+  autoload :AttributesParser, "attrio/attributes_parser"
+  autoload :Initialize, "attrio/initialize"
+  autoload :Inspect, "attrio/inspect"
+  autoload :Reset, "attrio/reset"
+  autoload :Helpers, "attrio/helpers"
 
   def self.included(base)
     base.send :include, Attrio::Reset
@@ -69,24 +69,24 @@ module Attrio
     end
   end
 
-  autoload :Attribute, 'attrio/attribute'
-  autoload :DefaultValue, 'attrio/default_value'
+  autoload :Attribute, "attrio/attribute"
+  autoload :DefaultValue, "attrio/default_value"
 
   module Builders
-    autoload :ReaderBuilder, 'attrio/builders/reader_builder'
-    autoload :WriterBuilder, 'attrio/builders/writer_builder'
+    autoload :ReaderBuilder, "attrio/builders/reader_builder"
+    autoload :WriterBuilder, "attrio/builders/writer_builder"
   end
 
   module Types
-    autoload :Array, 'attrio/types/array'
-    autoload :Base, 'attrio/types/base'
-    autoload :Boolean, 'attrio/types/boolean'
-    autoload :Date, 'attrio/types/date'
-    autoload :DateTime, 'attrio/types/date_time'
-    autoload :Float, 'attrio/types/float'
-    autoload :Integer, 'attrio/types/integer'
-    autoload :Set, 'attrio/types/set'
-    autoload :Symbol, 'attrio/types/symbol'
-    autoload :Time, 'attrio/types/time'
+    autoload :Array, "attrio/types/array"
+    autoload :Base, "attrio/types/base"
+    autoload :Boolean, "attrio/types/boolean"
+    autoload :Date, "attrio/types/date"
+    autoload :DateTime, "attrio/types/date_time"
+    autoload :Float, "attrio/types/float"
+    autoload :Integer, "attrio/types/integer"
+    autoload :Set, "attrio/types/set"
+    autoload :Symbol, "attrio/types/symbol"
+    autoload :Time, "attrio/types/time"
   end
 end

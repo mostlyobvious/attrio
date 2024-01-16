@@ -2,7 +2,7 @@
 
 # encoding: utf-8
 
-require 'attrio/builders/accessor_builder'
+require "attrio/builders/accessor_builder"
 
 module Attrio
   module Builders

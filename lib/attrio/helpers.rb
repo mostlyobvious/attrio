@@ -18,11 +18,18 @@ module Attrio
     # does not cause this to fail
     def symbolize_hash_keys(hash)
       hash.inject({}) do |new_hash, (key, value)|
-        new_hash[(key.to_sym rescue key) || key] = value
+        new_hash[
+          (
+            begin
+              key.to_sym
+            rescue StandardError
+              key
+            end
+          ) || key
+        ] = value
         new_hash
       end
       hash
     end
-
   end
 end

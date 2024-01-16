@@ -2,7 +2,7 @@
 
 # encoding: utf-8
 
-require 'attrio/default_value/base'
+require "attrio/default_value/base"
 
 module Attrio
   module DefaultValue
@@ -17,7 +17,11 @@ module Attrio
       # @param [Object] instance
       #
       def call(instance)
-        instance.respond_to?(self.value, true) ? instance.send(self.value) : self.value
+        if instance.respond_to?(self.value, true)
+          instance.send(self.value)
+        else
+          self.value
+        end
       end
     end
   end

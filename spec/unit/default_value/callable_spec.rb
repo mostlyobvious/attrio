@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Attrio::DefaultValue::Callable do
   subject { described_class.new(attribute, default_value) }
@@ -10,20 +10,22 @@ describe Attrio::DefaultValue::Callable do
       include Attrio
 
       define_attributes do
-        attr :attribute, DateTime, :default => proc{ DateTime.now }
+        attr :attribute, DateTime, default: proc { DateTime.now }
       end
     end
   end
 
-  let(:object){ model.new }
+  let(:object) { model.new }
 
-  let(:attribute){ double('attribute')}
-  let(:default_value){ double('default_value')}
-  let(:response)  { double('response') }
+  let(:attribute) { double("attribute") }
+  let(:default_value) { double("default_value") }
+  let(:response) { double("response") }
 
-  before { allow(default_value).to receive_messages(:call => response) }
-  it 'should call the value with the object and attribute' do
-    expect(default_value).to receive(:call).with(object, attribute).and_return(response)
+  before { allow(default_value).to receive_messages(call: response) }
+  it "should call the value with the object and attribute" do
+    expect(default_value).to receive(:call).with(object, attribute).and_return(
+      response
+    )
     subject.call(object)
   end
 

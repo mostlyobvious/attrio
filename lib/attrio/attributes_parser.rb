@@ -16,9 +16,11 @@ module Attrio
     def attr(*args)
       attribute_name = args[0].to_s
       attribute_options = (args.last.kind_of?(Hash) ? args.pop : Hash.new)
-      attribute_type = self.fetch_type(attribute_options.delete(:type) || args[1])
+      attribute_type =
+        self.fetch_type(attribute_options.delete(:type) || args[1])
 
-      attribute = self.create_attribute(attribute_name, attribute_type, attribute_options)
+      attribute =
+        self.create_attribute(attribute_name, attribute_type, attribute_options)
       self.add_attribute(attribute_name, attribute)
 
       self
@@ -27,10 +29,14 @@ module Attrio
     alias_method :attribute, :attr
 
     def self.cast_type(constant)
-      return constant if constant.is_a?(Class) && !!(constant < Attrio::Types::Base)
+      if constant.is_a?(Class) && !!(constant < Attrio::Types::Base)
+        return constant
+      end
 
       string = constant.to_s
-      string = string.camelize if (string =~ /\w_\w/ || string.chars.first.downcase == string.chars.first)
+      string = string.camelize if (
+        string =~ /\w_\w/ || string.chars.first.downcase == string.chars.first
+      )
 
       begin
         if Attrio::Types.const_defined?(string)
@@ -40,12 +46,12 @@ module Attrio
         else
           return nil
         end
-      rescue
+      rescue StandardError
         return constant
       end
     end
 
-  protected
+    protected
 
     # def as
     #   self.options[:as]
@@ -61,7 +67,10 @@ module Attrio
     end
 
     def create_attribute(name, type, options)
-      Attrio::Attribute.new(name, type, options).define_writer(self.klass).define_reader(self.klass)
+      Attrio::Attribute
+        .new(name, type, options)
+        .define_writer(self.klass)
+        .define_reader(self.klass)
     end
 
     def add_attribute(name, attribute)
