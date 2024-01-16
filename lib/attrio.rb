@@ -25,11 +25,11 @@ require_relative "attrio/types/time"
 
 module Attrio
   def self.included(base)
-    base.send :include, Attrio::Reset
-    base.send :include, Attrio::Inspect
+    base.include Reset
+    base.include Inspect
 
-    base.send :extend, Attrio::Initialize
-    base.send :extend, Attrio::ClassMethods
+    base.extend Initialize
+    base.extend ClassMethods
   end
 
   module ClassMethods
