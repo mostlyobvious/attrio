@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# encoding: utf-8
-
 require "attrio/version"
 
 require "attrio/core_ext/object"

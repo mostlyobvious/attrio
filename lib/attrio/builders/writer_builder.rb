@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# encoding: utf-8
-
 require "attrio/builders/accessor_builder"
 
 module Attrio
