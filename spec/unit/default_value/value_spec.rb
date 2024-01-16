@@ -32,7 +32,7 @@ describe Attrio::DefaultValue do
 
   context 'default value is set as a not clonable object' do
     it "should set attribute value to appropriate type" do
-      expect(object.attribute_with_default_value).to be_instance_of(Fixnum)
+      expect(object.attribute_with_default_value).to be_instance_of(Integer)
     end
 
     it "should be equal to attribute value" do
